@@ -1,0 +1,71 @@
+import tkinter as tk
+from tkinter import messagebox
+import pygame
+
+# Initialize Pygame mixer
+pygame.mixer.init()
+
+# Load and play the MP3 file
+def play_music():
+    try:
+        pygame.mixer.music.load("enna-sona.mp3")  # Make sure this file is in the same folder
+        pygame.mixer.music.play(-1)  # Loop the music
+    except Exception as e:
+        messagebox.showerror("Audio Error", f"Could not play music:\n{e}")
+
+# Show hug message
+def show_hug(event):
+    hug_label.config(text="🤗 A big warm virtual hug is on its way to you, Samriddhi! 💞")
+
+# Create GUI
+root = tk.Tk()
+root.title("For Samriddhi 💖")
+root.configure(bg="#ffe6f0")
+root.geometry("800x600")
+
+# Title
+title = tk.Label(root, text="Hey Samriddhi ❤️", font=("Segoe UI", 32), bg="#ffe6f0", fg="#ff4d6d")
+title.pack(pady=10)
+
+# Note Box
+note = tk.Label(root, text=(
+    "I know you're not feeling your best right now...\n"
+    "But I just want to remind you:\n"
+    "You're strong. You're amazing. You're deeply loved.\n"
+    "And I'm always here for you 💕"
+), font=("Segoe UI", 14), bg="#fff0f5", fg="#ff4d6d", wraplength=600, justify="center", padx=20, pady=20, relief="groove", bd=2)
+note.pack(pady=10)
+
+# Poem Box
+poem = tk.Label(root, text=(
+    "तेरे दर्द में मैं भी शामिल हूँ,\n"
+    "तेरे हर आँसू का मैं भी हासिल हूँ।\n"
+    "चाँद भी शरमाए तेरी मासूमियत पर,\n"
+    "तू हँसे तो बहारों का मौसम हासिल हूँ।\n\n"
+    "ये दिन थोड़े से भारी हैं सही,\n"
+    "पर मैं हूँ न, तेरे सबसे पास यही।\n"
+    "तेरे चेहरे की हँसी कभी कम ना हो,\n"
+    "तेरा हर दर्द मेरा हो, बस ये ग़म ना हो।"
+), font=("Segoe UI", 14), bg="#fff0f5", fg="#ff4d6d", wraplength=600, justify="center", padx=20, pady=20, relief="groove", bd=2)
+poem.pack(pady=10)
+
+# Heart Icon
+heart = tk.Label(root, text="❤️", font=("Segoe UI", 30), bg="#ffe6f0")
+heart.pack(pady=10)
+
+# Footer Text
+footer = tk.Label(root, text="Sending hugs, cuddles, and chocolate 😘\n\nPress SPACEBAR to send a virtual hug 🤗", font=("Segoe UI", 12), bg="#ffe6f0", fg="#cc3366")
+footer.pack(pady=10)
+
+# Hug Message (initially hidden)
+hug_label = tk.Label(root, text="", font=("Segoe UI", 14), bg="#ffe6f0", fg="#cc3366")
+hug_label.pack(pady=10)
+
+# Bind spacebar
+root.bind("<space>", show_hug)
+
+# Start music
+play_music()
+
+# Run GUI
+root.mainloop()
